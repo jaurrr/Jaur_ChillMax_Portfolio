@@ -1,0 +1,39 @@
+<section id="gallery" class="section">
+  <div class="section-head" appReveal>
+    <span class="section-num">{{ meta.num }}</span>
+    <h2>{{ meta.title }}</h2>
+    <span class="label">{{ meta.label }}</span>
+  </div>
+
+  <div class="gallery-grid">
+    @for (img of images; track img.src; let i = $index) {
+      <figure
+        class="plate"
+        appReveal
+        (click)="open(i)"
+        (keydown.enter)="open(i)"
+        (keydown.space)="$event.preventDefault(); open(i)"
+        tabindex="0"
+        role="button"
+        [attr.aria-label]="'View photo: ' + img.alt"
+      >
+        <div class="plate-frame plate-sm">
+          <img [src]="img.src" [alt]="img.alt" loading="lazy" />
+        </div>
+        <figcaption><span class="cap-num">{{ i + 1 }}</span> {{ img.alt }}</figcaption>
+      </figure>
+    }
+  </div>
+
+  @if (lightbox() !== null) {
+    <div class="modal" (click)="close()" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button type="button" class="modal-btn modal-close" (click)="close()" aria-label="Close">×</button>
+      <button type="button" class="modal-btn modal-prev" (click)="$event.stopPropagation(); step(-1)" aria-label="Previous photo">‹</button>
+      <figure class="modal-fig" (click)="$event.stopPropagation()">
+        <img [src]="images[lightbox()!].src" [alt]="images[lightbox()!].alt" />
+        <figcaption>{{ images[lightbox()!].alt }} · {{ lightbox()! + 1 }} / {{ images.length }}</figcaption>
+      </figure>
+      <button type="button" class="modal-btn modal-next" (click)="$event.stopPropagation(); step(1)" aria-label="Next photo">›</button>
+    </div>
+  }
+</section>

@@ -1,0 +1,37 @@
+<section id="skills" class="section">
+  <div class="section-head" appReveal>
+    <span class="section-num">{{ meta.num }}</span>
+    <h2>{{ meta.title }}</h2>
+    <span class="label">{{ meta.label }}</span>
+  </div>
+
+  <div class="skill-cats">
+    @for (cat of categories; track cat.title) {
+      <div class="skill-cat" appReveal>
+        <h3>{{ cat.title }}</h3>
+        <p class="skill-sub">{{ cat.subtitle }}</p>
+        <p class="skill-list">{{ cat.skills.join(', ') }}</p>
+      </div>
+    }
+  </div>
+
+  <div class="services">
+    <figure class="plate" appReveal>
+      <div class="plate-frame">
+        <img [src]="servicesImage" alt="Grow together — services" loading="lazy" />
+      </div>
+      <figcaption><span class="cap-num">{{ plate.num }}</span> {{ plate.caption }}</figcaption>
+    </figure>
+    <div class="services-list">
+      <h3 appReveal>Services I offer</h3>
+      <ul>
+        @for (svc of services; track svc.title) {
+          <li appReveal>
+            <span class="svc-title">{{ svc.title }}</span>
+            <span class="svc-desc">{{ svc.desc }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

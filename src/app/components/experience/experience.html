@@ -1,0 +1,90 @@
+<section id="experience" class="section">
+  <div class="section-head" appReveal>
+    <span class="section-num">{{ meta.num }}</span>
+    <h2>{{ meta.title }}</h2>
+    <span class="label">{{ meta.label }}</span>
+  </div>
+
+  <div class="timeline">
+    <article class="timeline-item" appReveal>
+      <div class="tl-period">{{ exp.period }}</div>
+      <div class="tl-body">
+        <h3>{{ exp.role }}</h3>
+        <p class="tl-org">
+          <a [href]="exp.liveUrl" target="_blank" rel="noopener">{{ exp.company }}</a>
+        </p>
+        <p class="tl-summary">{{ exp.summary }}</p>
+        <ul class="tl-points">
+          @for (pt of exp.points; track pt) {
+            <li>{{ pt }}</li>
+          }
+        </ul>
+      </div>
+    </article>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 class="col-heading" appReveal>Certifications</h3>
+      <div class="cert-cards">
+        @for (cert of certs; track cert.title) {
+          <button
+            type="button"
+            class="cert-card"
+            appReveal
+            (click)="openCert(cert)"
+            [attr.aria-label]="'View certificate: ' + cert.title"
+          >
+            <span class="cert-thumb">
+              <img [src]="cert.thumb" [alt]="cert.title + ' — certificate thumbnail'" loading="lazy" />
+            </span>
+            <span class="cert-title">{{ cert.title }}</span>
+            <span class="cert-org">{{ cert.org }}</span>
+          </button>
+        }
+      </div>
+    </div>
+    <div>
+      <h3 class="col-heading" appReveal>Education</h3>
+      <ul class="plain-list">
+        @for (edu of education; track edu.title) {
+          <li appReveal>
+            <span class="plain-title">{{ edu.title }}</span>
+            <span class="plain-sub">
+              @if (edu.url) {
+                <a [href]="edu.url" target="_blank" rel="noopener">{{ edu.org }}</a>
+              } @else {
+                {{ edu.org }}
+              }
+            </span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  @if (selectedCert(); as cert) {
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="modalTitle + ': ' + cert.title"
+      (click)="closeCert()"
+    >
+      <button type="button" class="modal-btn modal-close" (click)="closeCert()" aria-label="Close">×</button>
+      <figure class="cert-modal-fig" (click)="$event.stopPropagation()">
+        <object class="cert-doc" [data]="cert.pdf" type="application/pdf" [attr.title]="cert.title">
+          <p class="cert-fallback">
+            Your browser can't preview this PDF.
+            <a [href]="cert.pdf" target="_blank" rel="noopener">{{ openFull }}</a>
+          </p>
+        </object>
+        <figcaption>
+          {{ cert.title }} · {{ cert.org }}
+          —
+          <a [href]="cert.pdf" target="_blank" rel="noopener">{{ openFull }}</a>
+        </figcaption>
+      </figure>
+    </div>
+  }
+</section>

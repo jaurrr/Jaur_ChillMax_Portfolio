@@ -1,0 +1,79 @@
+/* "Ma" contact — ruled form, italic contact lines */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.contact-copy > p {
+  color: var(--ink-soft);
+  font-weight: 300;
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-form { margin-bottom: 2.5rem; }
+.contact-form label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
+}
+.contact-form input,
+.contact-form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.85rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--ink);
+  border-radius: 0;
+  transition: border-color 0.25s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+.contact-form textarea { resize: vertical; }
+.contact-form .btn { margin-top: 0.5rem; }
+
+.sent-note {
+  margin-top: 1rem;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.contact-links { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+.contact-line {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  width: fit-content;
+  border-bottom: 1px solid var(--hairline);
+  transition: color 0.25s, border-color 0.25s;
+}
+.contact-line:hover { color: var(--accent); border-color: var(--accent); }
+
+.social { display: flex; gap: 1.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.social a {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  border-bottom: 1px solid transparent;
+}
+.social a:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}

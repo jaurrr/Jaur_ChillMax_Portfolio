@@ -1,0 +1,72 @@
+<section id="contact" class="section">
+  <div class="section-head" appReveal>
+    <span class="section-num">{{ meta.num }}</span>
+    <h2>{{ meta.title }}</h2>
+    <span class="label">{{ meta.label }}</span>
+  </div>
+
+  <div class="contact-grid">
+    <figure class="plate" appReveal>
+      <div class="plate-frame">
+        <img [src]="contactImage" alt="Jauhar Ayyub — contact" loading="lazy" />
+      </div>
+      <figcaption><span class="cap-num">{{ plate.num }}</span> {{ plate.caption }}</figcaption>
+    </figure>
+    <div class="contact-copy">
+      <p appReveal>{{ profile.contactLine }}</p>
+
+      <form class="contact-form" appReveal (ngSubmit)="submit()">
+        <label>
+          Name
+          <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            required
+            [ngModel]="name()"
+            (ngModelChange)="name.set($event)"
+          />
+        </label>
+        <label>
+          Email
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+            [ngModel]="email()"
+            (ngModelChange)="email.set($event)"
+          />
+        </label>
+        <label>
+          Message
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Say hello…"
+            required
+            [ngModel]="message()"
+            (ngModelChange)="message.set($event)"
+          ></textarea>
+        </label>
+        <button type="submit" class="btn">Send via Email</button>
+        @if (sent()) {
+          <p class="sent-note" role="status">Opening your mail app — talk soon.</p>
+        }
+      </form>
+
+      <div class="contact-links" appReveal>
+        <a [href]="'mailto:' + profile.email" class="contact-line">{{ profile.email }}</a>
+        <a [href]="profile.whatsapp" target="_blank" rel="noopener" class="contact-line">WhatsApp</a>
+      </div>
+
+      <div class="social" appReveal>
+        <a [href]="profile.github" target="_blank" rel="noopener">GitHub</a>
+        <a [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a [href]="profile.instagram" target="_blank" rel="noopener">Instagram</a>
+      </div>
+
+      <a [href]="profile.cvPath" class="btn btn-ghost" appReveal download>Download CV</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<section id="home" class="hero">
+  <div class="hero-inner">
+    <p class="label" appReveal>{{ label }}</p>
+    <h1 class="hero-name" appReveal="80">{{ profile.firstName }}<br /><em>{{ profile.lastName }}</em></h1>
+    <p class="hero-roles" appReveal="160">
+      <app-typing [words]="profile.roles"></app-typing>
+    </p>
+    <p class="hero-tagline" appReveal="240">{{ profile.tagline }}</p>
+    <div class="hero-actions" appReveal="320">
+      <a href="#projects" class="btn">{{ viewWork }}</a>
+      <a [href]="profile.cvPath" class="btn btn-ghost" download>{{ cvLabel }}</a>
+    </div>
+    <figure class="plate hero-plate" appReveal="400">
+      <div
+        class="flip-card plate-frame"
+        [class.flipped]="flipped()"
+        (click)="toggleFlip()"
+        (keydown.enter)="toggleFlip()"
+        (keydown.space)="$event.preventDefault(); toggleFlip()"
+        tabindex="0"
+        role="button"
+        aria-label="Flip photo card"
+      >
+        <div class="flip-inner">
+          <img [src]="profile.heroImage" alt="Portrait of Jauhar Ayyub" class="flip-face" />
+          <img [src]="profile.heroBackImage" alt="Jauhar Ayyub — casual portrait" class="flip-face flip-back" />
+        </div>
+      </div>
+      <figcaption><span class="cap-num">{{ plate.num }}</span> {{ plate.caption }}</figcaption>
+    </figure>
+  </div>
+</section>

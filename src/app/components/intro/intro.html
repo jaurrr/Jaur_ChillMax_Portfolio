@@ -1,0 +1,8 @@
+@if (visible()) {
+  <div class="preloader" [class.done]="done()" aria-hidden="true">
+    <div class="preloader-inner">
+      <p class="preloader-name">{{ name }}</p>
+      <div class="preloader-line"><span></span></div>
+    </div>
+  </div>
+}

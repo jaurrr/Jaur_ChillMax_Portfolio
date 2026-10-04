@@ -1,0 +1,71 @@
+/* "Ma" skills — ledger columns, then the services offering */
+
+.skill-cats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 4rem;
+  margin-bottom: 6rem;
+}
+.skill-cat { padding-top: 1.5rem; border-top: 1px solid var(--hairline); }
+.skill-cat h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin-bottom: 0.35rem;
+}
+.skill-sub {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  margin-bottom: 1rem;
+  font-family: var(--serif);
+}
+.skill-list {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 2;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.services-list h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+.services-list ul { list-style: none; }
+.services-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--hairline);
+}
+.services-list li:last-child { border-bottom: 1px solid var(--hairline); }
+.svc-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.svc-title::before {
+  content: "—";
+  color: var(--accent);
+  margin-right: 0.75rem;
+}
+.svc-desc {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  padding-left: 2.1rem;
+}
+
+@media (max-width: 900px) {
+  .skill-cats { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services { grid-template-columns: 1fr; gap: 2.5rem; }
+}

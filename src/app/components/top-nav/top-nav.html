@@ -1,0 +1,52 @@
+<header class="nav" id="topnav">
+  <div class="nav-inner">
+    <button type="button" class="nav-brand" (click)="go('home')" [attr.aria-label]="profile.firstName + ' ' + profile.lastName + ' — home'">
+      {{ profile.brand }}<span class="accent">.</span>
+    </button>
+
+    <nav class="nav-links" aria-label="Section navigation" [class.open]="menuOpen()">
+      @for (link of links; track link.id) {
+        <button
+          type="button"
+          class="nav-link"
+          [class.active]="active() === link.id"
+          (click)="go(link.id)"
+        >
+          {{ link.label }}
+        </button>
+      }
+    </nav>
+
+    <div class="nav-actions">
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="theme.toggle()"
+        [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+        [attr.title]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+      >
+        @if (theme.theme() === 'dark') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke-linecap="round" />
+          </svg>
+        } @else {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M20 13.5A8.5 8.5 0 0 1 10.5 4 7 7 0 1 0 20 13.5z" stroke-linejoin="round" />
+          </svg>
+        }
+      </button>
+
+      <button
+        type="button"
+        class="burger"
+        (click)="toggleMenu()"
+        [class.open]="menuOpen()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Toggle menu"
+      >
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

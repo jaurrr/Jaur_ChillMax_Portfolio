@@ -1,0 +1,37 @@
+<!-- Desktop: fixed vertical dot nav on the right -->
+<nav class="side-nav" aria-label="Section navigation">
+  <ul>
+    @for (link of links; track link.id) {
+      <li>
+        <button
+          type="button"
+          class="dot"
+          [class.active]="active() === link.id"
+          (click)="go(link.id)"
+          [attr.aria-label]="link.label"
+          [attr.aria-current]="active() === link.id ? 'true' : null"
+        >
+          <span class="label">{{ link.label }}</span>
+          <span class="pip"></span>
+        </button>
+      </li>
+    }
+  </ul>
+</nav>
+
+<!-- Mobile: hamburger lives in the top nav; the overlay menu is here -->
+@if (open()) {
+  <div class="mobile-menu" (click)="toggle()">
+    <nav (click)="$event.stopPropagation()" aria-label="Mobile navigation">
+      @for (link of links; track link.id) {
+        <button
+          type="button"
+          [class.active]="active() === link.id"
+          (click)="go(link.id)"
+        >
+          {{ link.label }}
+        </button>
+      }
+    </nav>
+  </div>
+}

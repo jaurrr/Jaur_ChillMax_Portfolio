@@ -1,0 +1,21 @@
+/* Vertical editorial accent text — the "Ma" aside */
+
+.side-text {
+  position: fixed;
+  right: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  writing-mode: vertical-rl;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  user-select: none;
+}
+
+main { display: block; }
+
+@media (max-width: 900px) {
+  .side-text { display: none; }
+}

@@ -1,0 +1,29 @@
+<section id="about" class="section">
+  <div class="section-head" appReveal>
+    <span class="section-num">{{ meta.num }}</span>
+    <h2>{{ meta.title }}</h2>
+    <span class="label">{{ meta.label }}</span>
+  </div>
+
+  <div class="about-grid">
+    <figure class="plate" appReveal>
+      <div class="plate-frame">
+        <img [src]="about.image" alt="Jauhar Ayyub — about portrait" />
+      </div>
+      <figcaption><span class="cap-num">{{ plate.num }}</span> {{ plate.caption }}</figcaption>
+    </figure>
+    <div class="about-copy">
+      @for (p of about.paragraphs; track $index) {
+        <p appReveal>{{ p }}</p>
+      }
+      <div class="stats" appReveal>
+        @for (s of about.stats; track s.label) {
+          <div class="stat">
+            <span class="stat-value">{{ s.value }}</span>
+            <span class="stat-label">{{ s.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

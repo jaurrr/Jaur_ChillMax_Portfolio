@@ -1,0 +1,75 @@
+/* "Ma" projects — ledger entries under one wide plate */
+
+.plate-wide { margin-bottom: 4rem; }
+
+.projects { display: grid; }
+
+.project {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--hairline);
+}
+.project:last-of-type { border-bottom: 1px solid var(--hairline); }
+
+.proj-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.3rem;
+}
+.proj-tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+.proj-year { font-family: var(--serif); font-style: italic; color: var(--ink-faint); }
+
+.proj-body h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  margin-bottom: 0.9rem;
+}
+.proj-body p {
+  color: var(--ink-soft);
+  font-weight: 300;
+  font-size: 0.98rem;
+  max-width: 42rem;
+  margin-bottom: 1.1rem;
+}
+.proj-tech {
+  font-size: 12px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint) !important;
+}
+.proj-links a {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.proj-links a:hover { color: var(--accent); border-color: var(--accent); }
+.link-sep { margin: 0 0.9rem; color: var(--ink-faint); }
+
+.projects-soon {
+  margin-top: 3.5rem;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  text-align: center;
+}
+.projects-soon em { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .project { grid-template-columns: 1fr; gap: 1rem; padding: 2.25rem 0; }
+  .proj-meta { flex-direction: row; gap: 1.25rem; align-items: baseline; }
+}

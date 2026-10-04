@@ -1,0 +1,45 @@
+<section id="projects" class="section">
+  <div class="section-head" appReveal>
+    <span class="section-num">{{ meta.num }}</span>
+    <h2>{{ meta.title }}</h2>
+    <span class="label">{{ meta.label }}</span>
+  </div>
+
+  <figure class="plate" appReveal>
+    <div class="plate-frame plate-wide">
+      <img [src]="projectsImage" alt="Featured projects banner" loading="lazy" />
+    </div>
+    <figcaption><span class="cap-num">{{ plate.num }}</span> {{ plate.caption }}</figcaption>
+  </figure>
+
+  <div class="projects">
+    @for (proj of projects; track proj.title) {
+      <article class="project" appReveal>
+        <div class="proj-meta">
+          <span class="proj-tag">{{ proj.tag }}</span>
+          <span class="proj-year">{{ proj.year }}</span>
+        </div>
+        <div class="proj-body">
+          <h3>{{ proj.title }}</h3>
+          <p>{{ proj.desc }}</p>
+          <p class="proj-tech">{{ proj.tech.join(' · ') }}</p>
+          @if (proj.liveUrl || (proj.extraLinks?.length ?? 0) > 0) {
+            <p class="proj-links">
+              @if (proj.liveUrl) {
+                <a [href]="proj.liveUrl" target="_blank" rel="noopener">{{ proj.liveLabel ?? 'Live' }}</a>
+              }
+              @for (link of proj.extraLinks ?? []; track link.url) {
+                @if (proj.liveUrl) {
+                  <span class="link-sep" aria-hidden="true">/</span>
+                }
+                <a [href]="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
+              }
+            </p>
+          }
+        </div>
+      </article>
+    }
+  </div>
+
+  <p class="projects-soon" appReveal>{{ soonLead }} <em>{{ soonEm }}</em></p>
+</section>

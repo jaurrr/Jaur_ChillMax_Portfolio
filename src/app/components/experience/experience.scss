@@ -1,0 +1,162 @@
+/* "Ma" experience — ruled timeline, catalogue cert cards, plain lists */
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+}
+.tl-period {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--accent);
+}
+.tl-body h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+.tl-org { margin: 0.35rem 0 1.25rem; }
+.tl-org a {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.tl-summary {
+  color: var(--ink-soft);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  max-width: 38rem;
+}
+.tl-points { list-style: none; max-width: 40rem; }
+.tl-points li {
+  position: relative;
+  padding: 0.55rem 0 0.55rem 1.75rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--hairline);
+  font-size: 0.95rem;
+}
+.tl-points li::before {
+  content: "·";
+  position: absolute;
+  left: 0.4rem;
+  color: var(--accent);
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--hairline);
+}
+.col-heading {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Small thumbnail cards for certificates */
+.cert-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.cert-card {
+  background: var(--plate-bg);
+  border: 1px solid var(--hairline);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+.cert-card:hover { border-color: var(--accent); }
+.cert-thumb {
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+.cert-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.cert-title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.cert-org {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* PDF modal */
+.cert-modal-fig {
+  width: min(860px, 88vw);
+  text-align: center;
+}
+.cert-doc {
+  width: 100%;
+  height: min(74vh, 720px);
+  border: 1px solid var(--hairline);
+  padding: 0.5rem;
+  background: var(--plate-bg);
+}
+.cert-fallback {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  padding: 3rem 1rem;
+}
+.cert-fallback a,
+.cert-modal-fig figcaption a {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.cert-modal-fig figcaption {
+  margin-top: 1rem;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.plain-list { list-style: none; }
+.plain-list li {
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.plain-list li:last-child { border-bottom: 1px solid var(--hairline); }
+.plain-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
+.plain-sub { font-size: 0.9rem; color: var(--ink-faint); font-weight: 300; }
+.plain-sub a { border-bottom: 1px solid var(--hairline); transition: color 0.25s, border-color 0.25s; }
+.plain-sub a:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 900px) {
+  .timeline-item { grid-template-columns: 1fr; gap: 1.25rem; }
+  .tl-period { max-width: 240px; }
+  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  .cert-cards { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+}
+
+@media (max-width: 520px) {
+  .cert-cards { grid-template-columns: 1fr 1fr; }
+}

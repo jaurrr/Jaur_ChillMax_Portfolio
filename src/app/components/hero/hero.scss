@@ -1,0 +1,80 @@
+/* "Ma" hero — editorial masthead, quiet flip-plate */
+
+.hero { padding: 7rem 0 6rem; }
+
+.hero-inner { max-width: var(--column); margin: 0 auto; text-align: left; }
+
+.hero-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 1.75rem 0 1.5rem;
+}
+.hero-name em { font-style: italic; font-weight: 300; }
+
+.hero-roles {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+  margin-bottom: 1.75rem;
+  min-height: 1.75em;
+}
+
+.hero-tagline {
+  max-width: 34rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions { display: flex; gap: 1rem; margin-bottom: 4rem; flex-wrap: wrap; }
+
+.hero-plate { max-width: 420px; }
+
+/* Flip card, restrained: thin catalogue frame, 3D turn */
+.flip-card {
+  perspective: 1200px;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+.flip-card:focus-visible { outline: 1px solid var(--accent); }
+
+.flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  aspect-ratio: 1 / 1;
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-back { transform: rotateY(180deg); }
+
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+
+/* Desktop: hover flips */
+@media (hover: hover) and (pointer: fine) {
+  .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner { transition: none; }
+}
+
+@media (max-width: 520px) {
+  .hero { padding: 4rem 0 3.5rem; }
+  .hero-plate { max-width: 320px; }
+}

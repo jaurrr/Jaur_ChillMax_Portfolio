@@ -1,0 +1,239 @@
+/* ============ "Ma" — The Editorial. Warm paper, ink, one quiet vermilion accent. ============ */
+
+/* Light-first editorial theme (default) */
+:root,
+[data-theme='light'] {
+  --paper: #f7f3ec;
+  --paper-deep: #efe9dd;
+  --plate-bg: #fbf9f4;
+  --ink: #1a1815;
+  --ink-soft: #4a453e;
+  --ink-faint: #8a8378;
+  --accent: #c8451f;
+  --accent-soft: rgba(200, 69, 31, 0.08);
+  --hairline: rgba(26, 24, 21, 0.16);
+  --nav-bg: rgba(247, 243, 236, 0.92);
+  --overlay-bg: rgba(247, 243, 236, 0.97);
+  --column: 760px;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+  color-scheme: light;
+}
+
+/* Tasteful dark variant — ink-warm, paper-on-black editorial */
+[data-theme='dark'] {
+  --paper: #161310;
+  --paper-deep: #100e0b;
+  --plate-bg: #1e1a15;
+  --ink: #f1e9db;
+  --ink-soft: #cfc5b2;
+  --ink-faint: #8f8674;
+  --accent: #e06a3a;
+  --accent-soft: rgba(224, 106, 58, 0.12);
+  --hairline: rgba(241, 233, 219, 0.18);
+  --nav-bg: rgba(22, 19, 16, 0.92);
+  --overlay-bg: rgba(16, 14, 11, 0.97);
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+::selection { background: var(--accent); color: var(--paper); }
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Labels, rules, editorial helpers ---------- */
+
+.label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--ink-faint);
+}
+
+.accent { color: var(--accent); }
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+/* ---------- Layout ---------- */
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 2.5rem; }
+
+.section { padding: 7rem 0; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.section-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.section-head h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.section-head .label { margin-left: auto; white-space: nowrap; }
+
+/* ---------- Photo plates (gallery catalogue) ---------- */
+
+.plate { cursor: default; }
+
+.plate-frame {
+  border: 1px solid var(--hairline);
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  background: var(--plate-bg);
+  transition: background 0.35s ease;
+}
+
+.plate-frame img { width: 100%; }
+
+.plate figcaption {
+  margin-top: 0.8rem;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+.cap-num {
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-right: 0.6rem;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.btn:hover { background: transparent; color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+/* ---------- Whisper-quiet reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Modal / lightbox chrome ---------- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-fig {
+  max-width: min(860px, 88vw);
+  text-align: center;
+}
+.modal-fig img {
+  max-height: 76vh;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--hairline);
+  padding: 1rem;
+  background: var(--plate-bg);
+}
+.modal-fig figcaption {
+  margin-top: 1rem;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.modal-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.5rem 1rem;
+  transition: color 0.25s;
+}
+.modal-btn:hover { color: var(--accent); }
+.modal-close { top: 1rem; right: 1.5rem; }
+.modal-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+.modal-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .wrap { padding: 0 1.25rem; }
+  .section { padding: 4.5rem 0; }
+  .modal-prev { left: 0.25rem; }
+  .modal-next { right: 0.25rem; }
+}
